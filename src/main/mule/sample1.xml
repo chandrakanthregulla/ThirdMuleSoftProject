@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b99c5dcf-9ab5-4859-9891-a01450c7dcb2" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="sample1Flow" doc:id="a83374be-e4bf-4797-951f-e511e6af4102" >
+		<http:listener doc:name="Listener" doc:id="1be7e566-4992-430b-91c9-26bb0d13fcbe" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-variable value="123" doc:name="Set Variable" doc:id="7b247363-64ca-471d-b803-19e6a49418db" variableName="empId"/>
+		<set-payload value="#[vars.empId]" doc:name="Set Payload" doc:id="7e3acc85-2e2e-4af9-a30e-139f670459eb" />
+		<logger level="INFO" doc:name="Logger" doc:id="26534e41-a8eb-4352-bc9a-3513c1e5e53e" message="my name is chandrakanth"/>
+	</flow>
+</mule>
